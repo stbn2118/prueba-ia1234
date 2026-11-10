@@ -1,0 +1,846 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TecnoFix: mantenimiento, soporte y reparación de computadores para personas y pequeños negocios.">
+  <title>TecnoFix | Soporte y reparación de computadores</title>
+
+  <style>
+    :root {
+      --navy: #101d32;
+      --blue: #087fc4;
+      --cyan: #20c7d9;
+      --light: #f4f7fa;
+      --white: #ffffff;
+      --text: #27364a;
+      --muted: #64748b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* Navegación */
+    header {
+      background: var(--navy);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: #e2e8f0;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      padding: 13px 23px;
+      border-radius: 8px;
+      font-weight: bold;
+      border: 2px solid var(--blue);
+      transition: .25s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #05669e;
+      border-color: #05669e;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: rgba(255,255,255,.7);
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--navy);
+      border-color: white;
+    }
+
+    /* Inicio */
+    .hero {
+      background:
+        radial-gradient(circle at 85% 30%, #164d72 0%, transparent 35%),
+        linear-gradient(120deg, #101d32, #142d49);
+      color: white;
+      padding: 105px 0;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(32,199,217,.15);
+      color: var(--cyan);
+      border: 1px solid rgba(32,199,217,.35);
+      border-radius: 30px;
+      padding: 7px 15px;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 57px);
+      line-height: 1.12;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--cyan);
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      max-width: 540px;
+      margin-bottom: 30px;
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .hero-visual {
+      min-height: 300px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .computer-icon {
+      font-size: 110px;
+      margin-bottom: 12px;
+    }
+
+    .hero-visual strong {
+      font-size: 22px;
+    }
+
+    .hero-visual p {
+      font-size: 14px;
+      margin: 8px 0 0;
+    }
+
+    /* Secciones generales */
+    section {
+      padding: 85px 0;
+      scroll-margin-top: 75px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-heading span {
+      color: var(--blue);
+      font-weight: bold;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      font-size: 34px;
+      color: var(--navy);
+      margin: 8px 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* Servicios */
+    .services {
+      background: var(--light);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 13px;
+      border: 1px solid #e2e8f0;
+      transition: .25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(16,29,50,.09);
+    }
+
+    .service-icon {
+      width: 55px;
+      height: 55px;
+      background: #e4f5fc;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Nosotros */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .about-visual {
+      min-height: 330px;
+      background: linear-gradient(140deg, #101d32, #087fc4);
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 105px;
+    }
+
+    .about-text h2 {
+      font-size: 34px;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .benefits {
+      list-style: none;
+      margin: 22px 0;
+    }
+
+    .benefits li {
+      margin: 12px 0;
+      color: var(--text);
+    }
+
+    .benefits li::before {
+      content: "✓";
+      color: var(--blue);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    /* Proceso */
+    .process {
+      background: var(--light);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .process-item {
+      text-align: center;
+      padding: 20px 12px;
+    }
+
+    .process-number {
+      width: 52px;
+      height: 52px;
+      margin: auto auto 15px;
+      background: var(--blue);
+      color: white;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .process-item h3 {
+      color: var(--navy);
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .process-item p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Contacto */
+    .contact {
+      background: var(--navy);
+      color: white;
+    }
+
+    .contact .section-heading h2 {
+      color: white;
+    }
+
+    .contact .section-heading p {
+      color: #cbd5e1;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact-info h3 {
+      font-size: 23px;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      color: #cbd5e1;
+      margin-bottom: 19px;
+    }
+
+    .contact-info strong {
+      color: var(--cyan);
+    }
+
+    .contact-form {
+      background: white;
+      color: var(--text);
+      border-radius: 15px;
+      padding: 30px;
+    }
+
+    .contact-form h3 {
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 13px;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a1424;
+      color: #cbd5e1;
+      padding: 28px 0;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: var(--cyan);
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero-content,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 75px 0;
+      }
+
+      .hero-visual {
+        min-height: 230px;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+      nav {
+        flex-direction: column;
+        padding: 15px 0;
+      }
+
+      .nav-links {
+        gap: 17px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        font-size: 37px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        text-align: center;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .section-heading h2,
+      .about-text h2 {
+        font-size: 28px;
+      }
+
+      .service-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-visual {
+        min-height: 230px;
+      }
+
+      .contact-form {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="container">
+      <nav aria-label="Navegación principal">
+        <a href="#inicio" class="logo">Tecno<span>Fix</span>.</a>
+
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Sobre nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- INICIO -->
+    <section class="hero" id="inicio">
+      <div class="container hero-content">
+        <div>
+          <span class="tag">Tecnología y confianza</span>
+
+          <h1>
+            Soluciones tecnológicas para
+            <span>tus equipos.</span>
+          </h1>
+
+          <p>
+            En TecnoFix cuidamos tus computadores.
+            Ofrecemos mantenimiento, soporte técnico y
+            reparación para personas y pequeños negocios.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#contacto" class="btn">Solicitar servicio</a>
+            <a href="#servicios" class="btn btn-outline">
+              Ver servicios
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="computer-icon" aria-hidden="true">💻</div>
+          <strong>Tu tecnología en buenas manos</strong>
+          <p>Soporte técnico confiable y soluciones eficientes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="services" id="servicios">
+      <div class="container">
+        <div class="section-heading">
+          <span>Lo que hacemos</span>
+          <h2>Nuestros servicios</h2>
+          <p>
+            Soluciones diseñadas para mantener tus equipos
+            funcionando de manera óptima.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🔧</div>
+            <h3>Reparación de computadores</h3>
+            <p>
+              Diagnóstico y solución de problemas de hardware
+              y software en computadores de escritorio y portátiles.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">⚙️</div>
+            <h3>Mantenimiento preventivo</h3>
+            <p>
+              Limpieza interna, revisión de componentes y
+              optimización para mejorar el rendimiento del equipo.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🛡️</div>
+            <h3>Eliminación de virus</h3>
+            <p>
+              Detección de amenazas, eliminación de software
+              malicioso y recomendaciones de seguridad.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">💾</div>
+            <h3>Recuperación de información</h3>
+            <p>
+              Asesoría para recuperar archivos y proteger
+              información importante de tus dispositivos.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🖥️</div>
+            <h3>Instalación de programas</h3>
+            <p>
+              Instalación y configuración de sistemas operativos,
+              controladores y programas.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🚀</div>
+            <h3>Optimización de equipos</h3>
+            <p>
+              Mejoramos el funcionamiento de tu computador
+              para ofrecer una experiencia más rápida y fluida.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section id="nosotros">
+      <div class="container about-grid">
+
+        <div class="about-visual" aria-label="Computador y tecnología">
+          <span aria-hidden="true">🖥️</span>
+        </div>
+
+        <div class="about-text">
+          <span style="color:var(--blue);font-weight:bold;">
+            CONÓCENOS
+          </span>
+
+          <h2>Somos TecnoFix, tu aliado tecnológico.</h2>
+
+          <p>
+            Somos un negocio dedicado al soporte técnico y
+            mantenimiento de computadores. Nuestro propósito
+            es ayudar a personas y pequeños negocios a mantener
+            su tecnología en excelentes condiciones.
+          </p>
+
+          <p>
+            Trabajamos con responsabilidad, atención personalizada
+            y compromiso para ofrecer soluciones claras y efectivas.
+          </p>
+
+          <ul class="benefits">
+            <li>Atención personalizada.</li>
+            <li>Diagnósticos claros.</li>
+            <li>Soluciones adaptadas a cada cliente.</li>
+            <li>Compromiso con la seguridad de la información.</li>
+          </ul>
+
+          <a href="#contacto" class="btn">Conoce nuestros servicios</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROCESO DE ATENCIÓN -->
+    <section class="process">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>Fácil y sencillo</span>
+          <h2>¿Cómo trabajamos?</h2>
+          <p>
+            Nuestro proceso está diseñado para brindarte
+            una atención organizada y transparente.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-item">
+            <div class="process-number">1</div>
+            <h3>Contáctanos</h3>
+            <p>Cuéntanos qué problema presenta tu computador.</p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-number">2</div>
+            <h3>Diagnóstico</h3>
+            <p>Revisamos el equipo e identificamos el problema.</p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-number">3</div>
+            <h3>Solución</h3>
+            <p>Te presentamos una propuesta de reparación.</p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-number">4</div>
+            <h3>Entrega</h3>
+            <p>Entregamos el equipo después del servicio acordado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>Estamos para ayudarte</span>
+          <h2>Hablemos de tu equipo</h2>
+          <p>
+            ¿Tu computador necesita mantenimiento o reparación?
+            Ponte en contacto con nosotros.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info">
+            <h3>Información de contacto</h3>
+
+            <p>
+              <strong>📞 Teléfono:</strong><br>
+              +57 300 123 4567
+            </p>
+
+            <p>
+              <strong>✉️ Correo electrónico:</strong><br>
+              contacto@tecnofix.com
+            </p>
+
+            <p>
+              <strong>📍 Ubicación:</strong><br>
+              Dosquebradas, Risaralda, Colombia.
+            </p>
+
+            <p>
+              <strong>🕒 Horario de atención:</strong><br>
+              Lunes a viernes: 8:00 a. m. - 6:00 p. m.<br>
+              Sábados: 8:00 a. m. - 1:00 p. m.
+            </p>
+          </div>
+
+          <div class="contact-form">
+            <h3>Solicita información</h3>
+
+            <form>
+              <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Tu nombre"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="correo">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="correo"
+                  name="correo"
+                  placeholder="ejemplo@correo.com"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="mensaje">¿En qué podemos ayudarte?</label>
+                <textarea
+                  id="mensaje"
+                  name="mensaje"
+                  placeholder="Describe el problema de tu computador..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="button" class="btn" disabled
+                title="Formulario de demostración">
+                Envío no disponible
+              </button>
+
+              <p class="form-note">
+                Formulario demostrativo. Actualmente no envía ni
+                almacena información. Para comunicarte, utiliza
+                los datos de contacto de esta página.
+              </p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <div class="container">
+      <p>
+        <strong>TecnoFix</strong> |
+        Soporte técnico y reparación de computadores.
+      </p>
+      <p>© 2026 TecnoFix. Todos los derechos reservados.</p>
+      <p>Proyecto de demostración con información ficticia.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
